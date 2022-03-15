@@ -26,7 +26,7 @@ var twoSum = function (nums, target) {
  * @param {string} s
  * @return {number}
  */
-// Roman to Integer
+// 2. Roman to Integer
 // priority system? CM > CD > XC > XL > IX > IV > M > D > C > L > X > V > I
 // put above in array of objects? then iterate thru array to count how many times each type of roman numeral shows up
 // slice from string each count, also check if string is empty, if so, break
@@ -99,7 +99,8 @@ const romanNums = [
 ];
 
 var romanToInt = function (s) {
-  let tempS = s;
+  let tempS = s; // don't mutate input bruh
+  resetToZero();
   romanNums.forEach((rn) => {
     if (tempS.length <= 0) return;
     if (tempS.includes(rn.name)) {
@@ -122,6 +123,26 @@ const sumRomanNumerals = () => {
   romanNums.forEach((rn) => {
     if (rn.occurrence > 0) sum += rn.value * rn.occurrence;
   });
-  resetToZero();
   return sum;
+};
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+// 3. Longest Common Prefix
+var longestCommonPrefix = function (strs) {
+  let shortestWord = strs[0];
+  strs.forEach((str) => {
+    if (shortestWord.length > str) shortestWord = str;
+  });
+  let prefix = "";
+  for (let i = 0; i < shortestWord.length; i++) {
+    if (strs.every((str) => str[i] === shortestWord[i])) {
+      prefix += shortestWord[i];
+    } else {
+      break;
+    }
+  }
+  return prefix;
 };
