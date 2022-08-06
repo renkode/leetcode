@@ -146,3 +146,64 @@ var longestCommonPrefix = function (strs) {
   }
   return prefix;
 };
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+// 4. Valid Parentheses
+// Open brackets must be closed by the same type of brackets.
+// Open brackets must be closed in the correct order.
+
+// let validBrackets = ["()", "{}", "[]"];
+
+// var isValid = function(s) {
+//     let temp = s;
+//     let brackets = [];
+//     while (temp.length > 0) {
+//         brackets.push(temp.slice(0,2));
+//         temp = temp.slice(2);
+//     }
+//     if (brackets.every(bracket => validBrackets.includes(bracket))) return true;
+//     return false;
+// };
+
+// wrong, expected {[]} to be true
+
+// let validOpenBrackets = ["(", "{", "["];
+// let validClosedBrackets = [")", "}", "]"];
+// let validPairings = ["()", "{}", "[]"];
+// var isValid = function(s) {
+//     let openBrackets = [];
+//     let closedBrackets = [];
+//     let pairings = [];
+//     for (let i = 0; i < s.length; i++) {
+//         if (validOpenBrackets.includes(s[i])) {
+//             openBrackets.push(s[i]);
+//         } else if (validClosedBrackets.includes(s[i])) {
+//             closedBrackets.push(s[i]);
+//         } else {
+//             continue;
+//         }
+//     }
+//     if (openBrackets.length !== closedBrackets.length) return false;
+//     openBrackets.forEach((bracket, index) => pairings.push(bracket.concat(closedBrackets[index])));
+//     console.log(pairings);
+//     if (pairings.every(bracket => validPairings.includes(bracket))) return true;
+//     return false;
+// }
+
+// {()} is still wrong
+
+// if a pair exists in the string, remove it, then check again
+let validPairings = ["()", "{}", "[]"];
+var isValid = function (s) {
+  let temp = s;
+  while (validPairings.some((pairing) => temp.includes(pairing))) {
+    validPairings.forEach((pairing) => {
+      if (temp.includes(pairing)) temp = temp.replaceAll(pairing, "");
+    });
+  }
+  if (temp.length > 0) return false;
+  return true;
+};
