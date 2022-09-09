@@ -207,3 +207,31 @@ var isValid = function (s) {
   if (temp.length > 0) return false;
   return true;
 };
+
+//412. Fizz Buzz
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n) {
+  let arr = [];
+  for (let i = 1; i <= n; i++) {
+    switch (
+      true // don't set this to i lol
+    ) {
+      case i % 3 === 0 && i % 5 === 0:
+        arr[i - 1] = "FizzBuzz";
+        break;
+      case i % 3 === 0:
+        arr[i - 1] = "Fizz";
+        break;
+      case i % 5 === 0:
+        arr[i - 1] = "Buzz";
+        break;
+      default:
+        arr[i - 1] = i.toString();
+        break;
+    }
+  }
+  return arr;
+};
