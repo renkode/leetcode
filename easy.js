@@ -258,3 +258,56 @@ var numIdenticalPairs = function (nums) {
   }
   return pairs;
 };
+
+// 876. Middle of the Linked List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+// VERY INEFFICIENT
+/*var middleNode = function (head) {
+  if (!head.next) return head;
+  let count = 1; // for calculation purposes
+  let middleIndex = 0;
+  let current = head;
+  while (current.next) {
+    count++;
+    if (current.next) current = current.next;
+  }
+
+  middleIndex = Math.floor(count / 2) + 1;
+  count = 0;
+  current = head;
+
+  while (current.next) {
+    console.log(count, current, middleIndex);
+    count++;
+    if (count === middleIndex) return current;
+    if (current.next) current = current.next;
+  }
+  return head.next;
+};*/
+
+// BETTER (map nodes to array)
+var middleNode = function (head) {
+  if (!head.next) return head;
+  let nodes = [];
+  let current = head;
+  while (current) {
+    nodes.push(current);
+    if (current.next) {
+      current = current.next;
+    } else {
+      break;
+    }
+  }
+  return nodes[Math.floor(nodes.length / 2)];
+};
